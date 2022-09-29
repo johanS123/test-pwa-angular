@@ -1,0 +1,23 @@
+<h1 class="title">
+  Bienvenido {{ user }}
+</h1>
+<nav class="menu">
+
+  <button mat-button [matMenuTriggerFor]="homeMenu">Inicio</button>
+  <mat-menu #homeMenu="matMenu" yPosition="below">
+    <button mat-menu-item>Home</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="auditMenu">Auditoria</button>
+  <mat-menu #auditMenu="matMenu" yPosition="below">
+    <button mat-menu-item [routerLink]="['/users']">Lista usuarios</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="closeSesionMenu">Perfil</button>
+  <mat-menu #closeSesionMenu="matMenu" yPosition="below">
+    <button mat-menu-item (click)="logout()">Cerrar Sesión</button>
+  </mat-menu>
+
+</nav>
+
+<router-outlet></router-outlet>
