@@ -16,12 +16,12 @@ export const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
-        data: { expectedRole: 'ADMIN' }
+        data: { expectedRole: 'ADMIN' },
+        canActivate: [RoleGuard]
       },
       {
           path: 'audit/:id',
           component: AuditComponent,
-          canActivate: [RoleGuard],
       }
     ]
   },
