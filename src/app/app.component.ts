@@ -17,6 +17,7 @@ export class AppComponent {
   }
 
   updateClient() {
+    console.log('cargando...')
     if (!this.swUpdate.isEnabled) {
       return;
     }
