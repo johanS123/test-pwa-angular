@@ -26,5 +26,16 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "webApi",
+      "urls": ["https://localhost:7071/api/**"],
+      "cacheConfig": {
+        "maxSize": 50,
+        "maxAge": "1d",
+        "strategy": "performance"
+      }
+    }
   ]
 }
