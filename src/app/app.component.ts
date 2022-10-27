@@ -47,7 +47,7 @@ export class AppComponent {
     this.appRef.isStable.subscribe((isStable) => {
       if (isStable) {
 
-        const timeInterval = interval(4 * 60 * 60 * 1000);
+        const timeInterval = interval(60 * 1000);
 
         timeInterval.subscribe(() => {
           this.swUpdate.checkForUpdate().then(() => console.log('checked'))
