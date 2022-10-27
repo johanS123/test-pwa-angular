@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { ApplicationRef, Component } from '@angular/core';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
+import { interval } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,14 +12,15 @@ export class AppComponent {
   title = 'testlogger-front';
 
   constructor(
-    private swUpdate: SwUpdate
+    private swUpdate: SwUpdate,
+    private appRef: ApplicationRef
   ) {
     this.updateClient();
+    this.checkUpdate();
   }
 
   updateClient() {
     if (!this.swUpdate.isEnabled) {
-      console.log('entre a la inestabilidad')
       return;
     }
 
@@ -40,7 +42,21 @@ export class AppComponent {
       }
     })
   }
+  
+  checkUpdate() {
+    this.appRef.isStable.subscribe((isStable) => {
+      if (isStable) {
+
+        const timeInterval = interval(4 * 60 * 60 * 1000);
+
+        timeInterval.subscribe(() => {
+          this.swUpdate.checkForUpdate().then(() => console.log('checked'))
+          console.log('update checked')  
+        })
+      }
+    })
+  }
+
+
 }
-
-
 
