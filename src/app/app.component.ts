@@ -17,13 +17,13 @@ export class AppComponent {
   }
 
   updateClient() {
-    console.log('cargando...')
     if (!this.swUpdate.isEnabled) {
+      console.log('entre a la inestabilidad')
       return;
     }
 
     this.swUpdate.versionUpdates.subscribe((ev: VersionEvent) => {
-      console.log(ev.type)
+      console.log(ev.type, 'evento')
       if (ev.type === 'VERSION_READY') {
         Swal.fire({
           title: 'Actualización Disponible',
